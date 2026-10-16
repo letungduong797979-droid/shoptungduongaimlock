@@ -1,0 +1,3971 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111114">
+  <title>Tùng Dương Shop | DPI Gaming Store</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #0c0c0f;
+  --panel: #151519;
+  --panel2: #1d1d23;
+  --text: #f6f6f7;
+  --muted: #a4a4ad;
+  --red: #ff3b45;
+  --line: #2c2c33;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body { 
+  margin: 0; 
+  background: var(--bg); 
+  color: var(--text); 
+  font-family: 'Montserrat', sans-serif; 
+  -webkit-font-smoothing: antialiased; 
+  overflow-x: hidden; 
+}
+a { color: inherit; text-decoration: none; }
+
+/* Background Canvas Hạt Ánh Sáng */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: #0c0c0f;
+}
+
+/* Topbar Mobile-First */
+.topbar {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #242429;
+  background: rgba(12, 12, 15, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.5px; font-weight: 800; }
+.brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; background: var(--red); color: #fff; font-weight: 900; font-size: 14px; box-shadow: 0 0 18px rgba(255, 59, 69, 0.4); flex-shrink: 0; }
+.brand b { color: var(--red); }
+.brand small { display: block; color: var(--muted); font-size: 8px; letter-spacing: 2px; margin-top: 2px; }
+
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.cart-btn { background: #1c1c22; border: 1px solid #3a3033; color: #fff; padding: 8px 12px; border-radius: 99px; font-size: 11.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.cart-badge { background: var(--red); color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: 800; }
+.support-link { font-size: 11.5px; border: 1px solid #393940; border-radius: 99px; padding: 8px 12px; white-space: nowrap; background: rgba(255,255,255,0.03); }
+.support-link:hover { border-color: var(--red); color: var(--red); }
+
+main { max-width: 1200px; margin: auto; padding: 0 16px; }
+
+/* Hero Section */
+.hero {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px 0 35px;
+}
+.hero-copy { width: 100%; text-align: left; }
+.eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; color: #ff4545; margin: 0 0 8px; display: inline-block; }
+.hero h1 { font-size: 30px; font-weight: 900; line-height: 1.12; letter-spacing: -1px; margin: 0; color: #ffffff; text-transform: uppercase; }
+.hero h1 span { color: var(--red); }
+.hero-tagline { margin: 10px 0 6px; color: #f0f0f2; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
+.hero-desc { font-size: 12.5px; font-weight: 500; line-height: 1.7; color: #c2c2cc; margin: 0 0 18px; }
+.primary-button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 0; border-radius: 10px; padding: 13px 18px; background: var(--red); color: white; font-weight: 800; font-size: 12px; cursor: pointer; box-shadow: 0 8px 24px rgba(255, 59, 69, 0.3); width: 100%; text-align: center; }
+
+/* Hero Art Box */
+.hero-art {
+  min-height: 190px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #2b2024;
+  border-radius: 18px;
+  background: radial-gradient(ellipse at 50% 50%, #6e1820 0, #251014 35%, #121215 72%);
+}
+.orb { position: absolute; border: 1px solid rgba(255, 74, 85, 0.25); border-radius: 50%; transform: rotate(-25deg); }
+.orb-one { width: 220px; height: 110px; }
+.orb-two { width: 180px; height: 200px; transform: rotate(35deg); }
+.crosshair { position: absolute; font-size: 70px; color: rgba(255, 59, 69, 0.2); font-weight: 200; }
+.hero-card { z-index: 1; width: min(88%, 260px); padding: 16px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; background: rgba(17, 17, 20, 0.85); box-shadow: 0 15px 45px rgba(0,0,0,0.7); transform: rotate(-2deg); text-align: center; backdrop-filter: blur(8px); }
+.hero-card small { color: #ff8b91; letter-spacing: 2px; font-size: 8px; display: block; }
+.hero-card strong { display: block; font-size: 26px; letter-spacing: -1px; margin: 6px 0; }
+.hero-card strong span { color: var(--red); }
+.hero-card i { font-style: normal; color: #aaa; font-size: 8px; letter-spacing: 2px; display: block; }
+
+/* Product Grid */
+.section { padding: 15px 0 40px; }
+.section-heading { display: flex; flex-direction: column; align-items: start; gap: 6px; margin-bottom: 18px; }
+.section-heading h2 { font-size: 22px; letter-spacing: -0.5px; margin: 0; }
+.section-note { font-size: 11px; color: var(--muted); }
+
+.product-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.product { padding: 18px; border-radius: 16px; background: rgba(23, 23, 29, 0.85); border: 1px solid #2b2b32; display: flex; flex-direction: column; position: relative; backdrop-filter: blur(8px); }
+.product-img-wrap { width: 100%; height: 140px; background: #0d0d10; border-radius: 10px; overflow: hidden; margin-bottom: 12px; display: grid; place-items: center; border: 1px solid #26262e; }
+.product-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.product-img-placeholder { color: var(--muted); font-size: 10px; text-align: center; letter-spacing: 1px; }
+
+.product-tag { display: inline-flex; align-self: flex-start; padding: 4px 8px; border-radius: 6px; background: rgba(255, 59, 69, 0.12); color: #ff6b72; font-size: 9px; font-weight: 800; letter-spacing: 1px; }
+.product h3 { margin: 10px 0 6px; font-size: 16px; font-weight: 800; }
+.product p { color: var(--muted); font-size: 11.5px; line-height: 1.6; margin: 0 0 14px; flex: 1; }
+.product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+.price { font-size: 18px; font-weight: 900; color: #ffffff; }
+
+.product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: 12px; }
+.buy-button { border: 0; border-radius: 8px; background: var(--red); color: white; padding: 11px 8px; font-size: 11.5px; font-weight: 800; cursor: pointer; text-align: center; }
+.buy-button:active { transform: scale(0.98); }
+.add-cart-button { border: 1px solid #423239; border-radius: 8px; background: #20181d; color: #ff8b91; padding: 11px 8px; font-size: 11.5px; font-weight: 800; cursor: pointer; text-align: center; }
+.add-cart-button:active { transform: scale(0.98); }
+
+/* How It Works & Notice */
+.how { display: grid; grid-template-columns: 1fr; gap: 0; padding: 20px 0 32px; border-top: 1px solid var(--line); }
+.how > div { border-bottom: 1px solid var(--line); padding: 14px 0; }
+.how > div:last-child { border-bottom: 0; }
+.step-number { color: var(--red); font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+.how h3 { font-size: 14px; margin: 6px 0 4px; }
+.how p { color: var(--muted); font-size: 11px; line-height: 1.5; margin: 0; }
+
+.notice { border: 1px solid #423239; background: rgba(23, 18, 22, 0.85); border-radius: 12px; padding: 14px; margin-bottom: 32px; }
+.notice strong { font-size: 12px; }
+.notice p { color: #bcb3b6; font-size: 11px; line-height: 1.6; margin: 4px 0 0; }
+
+/* Dialog Popup */
+dialog {
+  width: 92vw;
+  max-width: 440px;
+  max-height: 88vh;
+  overflow-y: auto;
+  border: 1px solid #3a3033;
+  border-radius: 16px;
+  padding: 20px 16px;
+  background: #151519;
+  color: var(--text);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.85);
+}
+dialog::backdrop { background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+dialog h2 { margin: 0 0 12px; font-size: 18px; }
+.dialog-close { float: right; border: 0; background: #2a2a30; color: #fff; border-radius: 50%; width: 28px; height: 28px; font-size: 16px; cursor: pointer; display: grid; place-items: center; }
+.order-total, .order-code { padding: 10px 0; border-top: 1px solid var(--line); }
+.order-total { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.order-total strong { font-size: 18px; color: var(--red); }
+.order-code > span { display: block; color: var(--muted); font-size: 10px; margin-bottom: 5px; }
+.order-code > div { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: #0d0d10; padding: 10px; border-radius: 8px; }
+.order-code code { font-size: 14px; font-weight: 800; letter-spacing: 0.5px; }
+.copy-button { background: #303037; color: white; border: 0; border-radius: 6px; padding: 7px 10px; cursor: pointer; font-size: 11px; }
+.qr-wrap { display: grid; place-items: center; text-align: center; margin: 12px 0; padding: 12px; background: #fff; color: #333; border-radius: 10px; min-height: 150px; }
+.qr-wrap img { display: none; width: min(100%, 200px); height: auto; }
+.qr-wrap img.ready { display: block; }
+.qr-wrap p { font-size: 10px; line-height: 1.5; margin: 4px 0; max-width: 240px; }
+.payment-steps { padding-left: 18px; color: #c5c5cc; font-size: 11px; line-height: 1.6; margin: 10px 0; }
+.full { width: 100%; margin-top: 10px; }
+
+.cart-items-list { margin-bottom: 12px; max-height: 180px; overflow-y: auto; }
+.cart-item-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(21, 21, 25, 0.95);
+  border: 1px solid var(--red);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #fff;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  transform: translateY(140%);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toast-notification.show { transform: translateY(0); }
+.toast-icon { width: 8px; height: 8px; background: #00e676; border-radius: 50%; box-shadow: 0 0 10px #00e676; flex-shrink: 0; }
+
+footer { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 20px 16px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); }
+footer a { color: #ff6b72; }
+
+/* PC / Laptop Screen Layout */
+@media(min-width: 768px) {
+  .topbar { height: 78px; padding: 0 clamp(18px, 6vw, 90px); }
+  main { padding: 0 24px; }
+  .hero { min-height: 420px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 30px; padding: 45px 0 55px; }
+  .hero h1 { font-size: 44px; letter-spacing: -1.5px; }
+  .hero-art { min-height: 310px; border-radius: 24px; }
+  .primary-button { width: auto; }
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .product-actions .buy-button:hover { background: #ff5961; }
+  .product-actions .add-cart-button:hover { background: #2f2027; }
+  .section-heading { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  .how { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 28px 0 55px; }
+  .how > div { border-bottom: 0; padding: 15px 0; }
+  footer { flex-direction: row; justify-content: space-between; padding: 22px clamp(18px, 6vw, 90px); text-align: left; }
+  dialog { width: min(92vw, 460px); padding: 26px; }
+  .toast-notification { left: auto; right: 20px; width: 320px; }
+}
+/* Hero Art Box - Nâng cấp max ping Cyberpunk */
+.hero-art {
+  min-height: 220px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 59, 69, 0.4);
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 50%, #2a0c10 0%, #150608 50%, #0c0c0f 85%);
+  box-shadow: inset 0 0 30px rgba(255, 59, 69, 0.15), 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Lưới điện tử Cyber Grid background */
+.hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 59, 69, 0.07) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 59, 69, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.6;
+}
+
+.orb { 
+  position: absolute; 
+  border-radius: 50%; 
+  filter: blur(15px);
+  opacity: 0.5;
+}
+.orb-one { width: 150px; height: 150px; background: rgba(255, 59, 69, 0.4); top: -20px; left: -20px; animation: pulseOrb 4s infinite alternate; }
+.orb-two { width: 140px; height: 140px; background: rgba(0, 230, 118, 0.2); bottom: -20px; right: -20px; animation: pulseOrb 5s infinite alternate-reverse; }
+
+@keyframes pulseOrb {
+  0% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(1.25); opacity: 0.6; }
+}
+
+.crosshair { 
+  position: absolute; 
+  font-size: 90px; 
+  color: rgba(255, 59, 69, 0.15); 
+  font-weight: 100;
+  animation: rotateCross 20s linear infinite;
+}
+
+@keyframes rotateCross {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Thẻ bài lơ lửng tối tân */
+.hero-card { 
+  z-index: 2; 
+  width: min(88%, 280px); 
+  padding: 20px; 
+  border: 1px solid rgba(255, 59, 69, 0.6); 
+  border-radius: 16px; 
+  background: rgba(18, 18, 24, 0.75); 
+  box-shadow: 0 0 25px rgba(255, 59, 69, 0.25), inset 0 0 15px rgba(255, 59, 69, 0.1);
+  transform: rotate(-3deg); 
+  text-align: center; 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: floatCard 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-6px) rotate(-1.5deg); }
+}
+
+.hero-card small { 
+  color: #ff8b91; 
+  letter-spacing: 2.5px; 
+  font-size: 8.5px; 
+  display: block; 
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hero-card strong { 
+  display: block; 
+  font-size: 28px; 
+  letter-spacing: -1px; 
+  margin: 8px 0; 
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(255, 59, 69, 0.5);
+}
+
+.hero-card strong span { color: var(--red); }
+
+.hero-card i { 
+  font-style: normal; 
+  color: #a4a4ad; 
+  font-size: 8px; 
+  letter-spacing: 2px; 
+  display: block; 
+  margin-top: 3px;
+}
+/* --- NÂNG CẤP GIAO DIỆN MAX PING --- */
+
+/* 1. Tùy chỉnh thanh cuộn cực chất (Custom Scrollbar) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #32323d; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+/* 2. Hiệu ứng Card sản phẩm bay bổng & viền neon khi di chuột (Hover Glow) */
+.product {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+}
+.product:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 59, 69, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 59, 69, 0.2);
+}
+
+/* 3. Ảnh sản phẩm có hiệu ứng zoom nhẹ khi hover */
+.product-img-wrap img {
+  transition: transform 0.4s ease;
+}
+.product:hover .product-img-wrap img {
+  transform: scale(1.08);
+}
+
+/* 4. Nút bấm hiệu ứng gợn sóng phản quang */
+.primary-button, .buy-button, .add-cart-button, .cart-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.primary-button:hover {
+  box-shadow: 0 0 20px rgba(255, 59, 69, 0.6);
+  filter: brightness(1.1);
+}
+.buy-button:hover {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 59, 69, 0.5);
+}
+
+/* 5. Hiệu ứng mở popup (Dialog) mượt mà phóng to từ giữa */
+dialog {
+  animation: dialogPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes dialogPop {
+  0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 6. Hiệu ứng nhịp đập cho Badge giỏ hàng khi có sản phẩm */
+.cart-badge {
+  animation: badgePulse 2s infinite;
+}
+@keyframes badgePulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 59, 69, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 59, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 69, 0); }
+}
+/* Styling Nâng Cấp Hero Copy */
+.eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 59, 69, 0.08);
+  border: 1px solid rgba(255, 59, 69, 0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #00e676;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00e676;
+  animation: blinkDot 1.5s infinite alternate;
+}
+@keyframes blinkDot {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+.eyebrow-wrap .eyebrow { margin: 0; }
+
+.hero-tagline i {
+  color: var(--red);
+  font-size: 10px;
+  margin-right: 2px;
+}
+
+/* Khối Stats Độc Quyền */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(21, 21, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+.stat-item { text-align: center; }
+.stat-item strong { display: block; font-size: 14px; color: #fff; font-weight: 800; }
+.stat-item small { font-size: 9px; color: var(--muted); }
+.stat-divider { width: 1px; height: 22px; background: rgba(255, 255, 255, 0.12); }
+/* Tùy chỉnh logo hình ảnh */
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: cover; /* Giúp ảnh không bị méo */
+  border-radius: 9px; /* Bo tròn góc logo nhẹ nhàng */
+  border: 1px solid rgba(255, 59, 69, 0.4);
+  box-shadow: 0 0 16px rgba(255, 59, 69, 0.3);
+  flex-shrink: 0;
+  background: #151519;
+}
+/* Hộp chứa Brand siêu đẹp, gọn gàng, hiệu ứng đặc biệt */
+.brand-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  background: rgba(21, 21, 28, 0.75);
+  border: 1px solid rgba(255, 59, 69, 0.35);
+  border-radius: 12px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 59, 69, 0.05);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hiệu ứng ánh sáng quét qua hộp khi di chuột */
+.brand-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 59, 69, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.brand-box:hover::before {
+  left: 100%;
+}
+
+.brand-box:hover {
+  border-color: rgba(255, 59, 69, 0.8);
+  box-shadow: 0 0 25px rgba(255, 59, 69, 0.4), inset 0 0 12px rgba(255, 59, 69, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Logo bên trong hộp */
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 59, 69, 0.5);
+  box-shadow: 0 0 10px rgba(255, 59, 69, 0.4);
+  background: #0c0c0f;
+  flex-shrink: 0;
+}
+
+/* Khối chữ bên cạnh logo */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text span {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #f6f6f7;
+  letter-spacing: 0.5px;
+}
+
+.brand-text b {
+  color: var(--red);
+  text-shadow: 0 0 8px rgba(255, 59, 69, 0.6);
+}
+
+.brand-text small {
+  display: block;
+  color: #a4a4ad;
+  font-size: 7.5px;
+  letter-spacing: 1.8px;
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+  /* Khung lưu ý thanh toán */
+  .payment-note-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 230, 118, 0.08);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 10.5px;
+    color: #00e676;
+    line-height: 1.4;
+  }
+  .payment-note-box i {
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  /* Styling Mini Cyberpunk Notification (Nhỏ gọn - Sát đáy) */
+.mini-cyber-notify {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 10, 14, 0.92);
+  border: 1px solid rgba(255, 59, 69, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 59, 69, 0.25);
+  padding: 6px 12px;
+  border-radius: 20px; /* Bo tròn thanh Pill siêu gọn */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 320px;
+  
+  /* Trạng thái trượt mượt */
+  transform: translateY(60px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s, visibility 0.35s;
+}
+
+.mini-cyber-notify.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dấu chấm xanh nhấp nháy báo trạng thái Live */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00e676;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00e676;
+  flex-shrink: 0;
+  animation: pulse-dot 1.5s infinite alternate;
+}
+
+/* Icon Sấm sét neon */
+.notify-bolt {
+  color: var(--red, #ff3b45);
+  font-size: 11px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 3px rgba(255, 59, 69, 0.8));
+}
+
+.notify-text-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.notify-text-wrap p {
+  margin: 0;
+  font-size: 11px;
+  color: #e2e2e8;
+}
+
+.notify-text-wrap p strong {
+  color: #fff;
+}
+
+.notify-text-wrap p span {
+  color: var(--red, #ff3b45);
+  font-weight: 700;
+}
+
+.notify-text-wrap small {
+  font-size: 9px;
+  color: #777;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 6px;
+}
+
+.notify-close {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 0 0 2px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.notify-close:hover {
+  color: #fff;
+}
+
+@keyframes pulse-dot {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .mini-cyber-notify {
+    bottom: 8px;
+    left: 8px;
+    padding: 5px 10px;
+    max-width: calc(100% - 16px);
+  }
+}
+/* --- WELCOME POPUP CYBERPUNK --- */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: grid;
+  place-items: center;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.welcome-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.welcome-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(14, 14, 20, 0.95);
+  border: 1px solid rgba(255, 59, 69, 0.5);
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(255, 59, 69, 0.25),
+    inset 0 0 15px rgba(255, 59, 69, 0.08);
+  transform: scale(0.8) translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.welcome-overlay.show .welcome-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Đèn Neon Quét Trên Đầu Thẻ */
+.welcome-glow-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff3b45, #ff8087, transparent);
+  animation: scan-line 2.5s infinite linear;
+}
+
+/* Header */
+.welcome-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cyber-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.welcome-header h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.welcome-header h2 span {
+  color: var(--red, #ff3b45);
+  text-shadow: 0 0 12px rgba(255, 59, 69, 0.8);
+}
+
+.welcome-sub {
+  font-size: 10.5px;
+  color: #8a8a9e;
+  margin: 4px 0 0;
+  letter-spacing: 0.5px;
+}
+
+/* Body Info */
+.welcome-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.icon-neon {
+  color: var(--red, #ff3b45);
+  font-size: 16px;
+  margin-top: 2px;
+  filter: drop-shadow(0 0 5px rgba(255, 59, 69, 0.8));
+}
+
+.info-box strong {
+  display: block;
+  font-size: 12px;
+  color: #fff;
+}
+
+.info-box p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.3;
+}
+
+.welcome-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(255, 59, 69, 0.1);
+  border: 1px dashed rgba(255, 59, 69, 0.4);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 10.5px;
+  color: #ff8087;
+  line-height: 1.4;
+}
+
+.welcome-alert i {
+  font-size: 13px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* Button Vào Shop */
+.cyber-btn-welcome {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff3b45, #d3101c);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(255, 59, 69, 0.4);
+  transition: all 0.25s ease;
+}
+
+.cyber-btn-welcome:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 59, 69, 0.7);
+  background: linear-gradient(135deg, #ff4d56, #e61926);
+}
+
+@keyframes scan-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+/* --- TRUNG TÂM HỖ TRỢ ONLINE CYBERPUNK --- */
+.support-widget-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* 1. Nút Bấm Tròn Floating Nhỏ Xinh */
+.zalo-float-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(14, 14, 20, 0.92);
+  border: 1.5px solid #0088ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0088ff;
+  font-size: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 
+    0 0 12px rgba(0, 136, 255, 0.6),
+    0 0 24px rgba(0, 136, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.zalo-float-btn:hover {
+  transform: scale(1.1) rotate(-8deg);
+  background: #0088ff;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 136, 255, 0.9);
+}
+
+.zalo-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 136, 255, 0.8);
+  animation: zalo-glow-pulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+/* 2. Hộp Box Trung Tâm Hỗ Trợ Mini */
+.support-box {
+  width: 270px;
+  background: rgba(12, 12, 18, 0.96);
+  border: 1px solid rgba(0, 136, 255, 0.4);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(0, 136, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Hiệu ứng Mở / Đóng mượt mà */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transform-origin: bottom right;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.support-box.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Header Box */
+.support-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.support-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.support-title-wrap strong {
+  font-size: 11px;
+  color: #fff;
+  letter-spacing: 0.8px;
+}
+
+.status-online-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #00e676;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00e676;
+  animation: pulse-green 1.5s infinite alternate;
+}
+
+.support-close-btn {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.support-close-btn:hover {
+  color: #fff;
+}
+
+/* Body Box */
+.support-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.admin-avatar-wrap {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background: rgba(0, 136, 255, 0.12);
+  border: 1px solid #0088ff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.admin-icon {
+  color: #0088ff;
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px #0088ff);
+}
+
+.live-tag {
+  position: absolute;
+  bottom: -4px;
+  font-size: 7.5px;
+  font-weight: 900;
+  background: #00e676;
+  color: #000;
+  padding: 1px 4px;
+  border-radius: 6px;
+}
+
+.admin-info h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.admin-info p {
+  margin: 2px 0 4px;
+  font-size: 10px;
+  color: #8a8a9e;
+  line-height: 1.2;
+}
+
+.phone-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0088ff;
+}
+
+/* Footer Nút Zalo Chat */
+.zalo-chat-now-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px;
+  background: linear-gradient(135deg, #0088ff, #0055ff);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.4);
+  transition: all 0.25s ease;
+}
+
+.zalo-chat-now-btn:hover {
+  background: linear-gradient(135deg, #1a94ff, #1a66ff);
+  box-shadow: 0 6px 18px rgba(0, 136, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes zalo-glow-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 136, 255, 0.7); }
+  70% { transform: scale(1.35); opacity: 0; box-shadow: 0 0 0 10px rgba(0, 136, 255, 0); }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes pulse-green {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .support-widget-wrap { bottom: 12px; right: 12px; }
+  .support-box { width: 250px; }
+}
+/* --- NÚT PHÁT NHẠC NHỎ XINH CYBERPUNK --- */
+.music-widget-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 74px; /* Nằm ngay bên trái nút Zalo (44px + 10px khoảng cách) */
+  z-index: 99999;
+}
+
+.music-float-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(14, 14, 20, 0.92);
+  border: 1.5px solid #ff0055;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff0055;
+  font-size: 18px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Ánh sáng Neon Hồng/Đỏ Cyberpunk */
+  box-shadow: 
+    0 0 12px rgba(255, 0, 85, 0.6),
+    0 0 24px rgba(255, 0, 85, 0.3);
+  
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.music-float-btn:hover {
+  transform: scale(1.1);
+  background: #ff0055;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.9);
+}
+
+/* Vòng sóng phát sáng nhấp nháy */
+.music-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 0, 85, 0.8);
+  animation: music-glow-pulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+/* Hiệu ứng xoay icon khi ĐANG PHÁT NHẠC */
+.music-float-btn.playing {
+  border-color: #00e676;
+  color: #00e676;
+  box-shadow: 
+    0 0 12px rgba(0, 230, 118, 0.6),
+    0 0 24px rgba(0, 230, 118, 0.3);
+}
+
+.music-float-btn.playing .music-pulse {
+  border-color: rgba(0, 230, 118, 0.8);
+  animation-duration: 1.2s;
+}
+
+.music-float-btn.playing #musicIcon {
+  animation: spin-music 3s linear infinite;
+}
+
+/* Tooltip Chữ Hiện Ra Khi Di Chuột */
+.music-tooltip {
+  position: absolute;
+  bottom: 52px;
+  background: rgba(10, 10, 14, 0.95);
+  border: 1px solid rgba(255, 0, 85, 0.5);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.music-float-btn:hover .music-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes music-glow-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes spin-music {
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile Tweak */
+@media (max-width: 480px) {
+  .music-widget-wrap { bottom: 12px; right: 62px; }
+  .music-float-btn { width: 40px; height: 40px; font-size: 16px; }
+  .music-tooltip { display: none; }
+}
+/* Styling Thanh Chuyển Tab Danh Mục Trong 1 Trang */
+.category-tabs-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0 25px 0;
+}
+
+.cat-tab-btn {
+  background: rgba(14, 14, 20, 0.8);
+  border: 1px solid rgba(255, 59, 69, 0.3);
+  color: #8a8a9e;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-tab-btn:hover {
+  border-color: rgba(255, 59, 69, 0.7);
+  color: #fff;
+}
+
+.cat-tab-btn.active {
+  background: linear-gradient(135deg, #ff3b45, #d3101c);
+  border-color: #ff3b45;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 59, 69, 0.4);
+}
+
+/* Style nút mua & giỏ hàng danh mục 2 */
+.price-wrap { margin-bottom: 12px; }
+.price-old { font-size: 11px; color: #666; text-decoration: line-through; margin-right: 6px; }
+.price-current { font-size: 18px; font-weight: 900; color: #00e676; }
+
+.card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn-buy-now {
+  padding: 9px;
+  background: linear-gradient(135deg, #ff3b45, #d3101c);
+  border: none;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-add-cart {
+  padding: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-buy-now:hover { background: #ff4d56; }
+.btn-add-cart:hover { background: rgba(255, 255, 255, 0.15); }
+/* --- CYBERPUNK PRODUCT CARD STYLE (DANH MỤC 2) --- */
+#productGridCat2 .product-card {
+  position: relative;
+  background: rgba(12, 12, 18, 0.88);
+  border: 1px solid rgba(255, 59, 69, 0.3);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 59, 69, 0.05);
+  overflow: hidden;
+}
+
+/* Hiệu ứng Đèn LED Viền Sáng khi Hover */
+#productGridCat2 .product-card:hover {
+  border-color: rgba(255, 59, 69, 0.8);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 59, 69, 0.35),
+    inset 0 0 15px rgba(255, 59, 69, 0.1);
+}
+
+/* Badge Nhãn sản phẩm Cyberpunk */
+#productGridCat2 .product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #ff3b45;
+  background: rgba(255, 59, 69, 0.12);
+  border: 1px solid rgba(255, 59, 69, 0.35);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  width: fit-content;
+  text-shadow: 0 0 5px rgba(255, 59, 69, 0.5);
+}
+
+#productGridCat2 h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.3px;
+}
+
+#productGridCat2 p {
+  font-size: 11.5px;
+  color: #8a8a9e;
+  margin: 0 0 14px 0;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Cắt chữ gọn gàng đúng 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Khung Giá Tiền Phát Sáng */
+.price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.price-old {
+  font-size: 11px;
+  color: #666;
+  text-decoration: line-through;
+}
+
+.price-current {
+  font-size: 17px;
+  font-weight: 900;
+  color: #00e676;
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+}
+
+/* Khung 2 Nút Mua Ngay & Thêm Giỏ */
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-buy-now {
+  padding: 10px 6px;
+  background: linear-gradient(135deg, #ff3b45, #d3101c);
+  border: none;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(255, 59, 69, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-buy-now:hover {
+  background: linear-gradient(135deg, #ff4d56, #e61926);
+  box-shadow: 0 5px 15px rgba(255, 59, 69, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-add-cart {
+  padding: 10px 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e2e8;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add-cart:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+  color: #fff;
+}
+/* --- CSS Khung Hình Ảnh Sản Phẩm --- */
+.product-img-box {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 59, 69, 0.2);
+}
+
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-img-box img {
+  transform: scale(1.08); /* Hiệu ứng phóng to nhẹ khi di chuột vào card */
+}
+
+.product-img-box .product-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  margin-bottom: 0;
+  background: rgba(10, 10, 16, 0.85);
+  backdrop-filter: blur(4px);
+}
+/* --- CSS ẢNH SẢN PHẨM GỌN GÀNG, CHUẨN TỈ LỆ 100% --- */
+.product-img-box {
+  position: relative;
+  width: 100%;
+  height: 120px; /* Khóa cứng chiều cao cho gọn gàng, không bị to thô */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 59, 69, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Tự động cắt khung khít ảnh, không bao giờ bị méo hình */
+  object-position: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card:hover .product-img-box img {
+  transform: scale(1.08); /* Phóng to nhẹ mượt mà khi hover */
+}
+
+.product-img-box .product-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  margin-bottom: 0;
+  background: rgba(10, 10, 16, 0.85);
+  backdrop-filter: blur(4px);
+  font-size: 8.5px;
+  padding: 2px 6px;
+}
+/* --- CSS TIÊU ĐỀ CỬA HÀNG + NÚT DANH MỤC NẰM NGANG NHAU --- */
+.section-heading-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Tự xuống hàng mượt mà nếu trên màn hình điện thoại siêu nhỏ */
+}
+
+.heading-left .eyebrow {
+  margin: 0 0 2px 0;
+  font-size: 11px;
+  color: #ff3b45;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.heading-left h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.category-tabs-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(12, 12, 18, 0.8);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 59, 69, 0.25);
+}
+
+.category-tabs-inline .cat-tab-btn {
+  background: transparent;
+  border: none;
+  color: #8a8a9e;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.category-tabs-inline .cat-tab-btn:hover {
+  color: #fff;
+}
+
+.category-tabs-inline .cat-tab-btn.active {
+  background: linear-gradient(135deg, #ff3b45, #d3101c);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(255, 59, 69, 0.4);
+}
+
+/* Tối ưu hiển thị trên màn hình Mobile */
+@media (max-width: 600px) {
+  .section-heading-inline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .category-tabs-inline {
+    width: 100%;
+  }
+  .category-tabs-inline .cat-tab-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+/* --- CSS NÚT DANH MỤC CYBERPUNK GÂY CHÚ Ý CỰC MẠNH --- */
+.section-heading-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.category-tabs-attention {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(8, 8, 14, 0.9);
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 59, 69, 0.4);
+  box-shadow: 0 0 15px rgba(255, 59, 69, 0.15);
+}
+
+.category-tabs-attention .cat-tab-btn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a0a0b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Nút Gói Hot: Viền Đỏ Neon + Ngọn Lửa Lắc Nhẹ */
+.btn-hot-pulse .flame-icon {
+  color: #ff3b45;
+  animation: flameWave 1.2s infinite alternate ease-in-out;
+}
+
+.hot-badge {
+  background: #ff3b45;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 2px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px #ff3b45;
+}
+
+/* Nút Sản Phẩm 2: Thẻ MỚI Phát Sáng Nhấp Nháy */
+.new-tag-glow {
+  background: linear-gradient(135deg, #00e676, #00b0ff);
+  color: #000;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* Tab Đang Được Chọn (Active) */
+.category-tabs-attention .cat-tab-btn.active {
+  background: linear-gradient(135deg, #ff3b45, #b3000c);
+  border-color: #ff3b45;
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(255, 59, 69, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.category-tabs-attention .cat-tab-btn.active .flame-icon {
+  color: #fff;
+}
+
+/* Animations Nhấp Nháy Gây Chú Ý */
+@keyframes flameWave {
+  0% { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 2px #ff3b45); }
+  100% { transform: scale(1.25) rotate(5deg); filter: drop-shadow(0 0 8px #ff7043); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 2px #00e676; transform: scale(1); }
+  50% { box-shadow: 0 0 10px #00e676; transform: scale(1.08); }
+  100% { box-shadow: 0 0 2px #00e676; transform: scale(1); }
+}
+
+/* Responsive Điện Thoại */
+@media (max-width: 600px) {
+  .section-heading-inline { flex-direction: column; align-items: flex-start; }
+  .category-tabs-attention { width: 100%; justify-content: space-between; }
+  .category-tabs-attention .cat-tab-btn { flex: 1; justify-content: center; }
+}
+/* --- HIỆU ỨNG TỎA SÁNG & KHUNG CYBERPUNK NỔI BẬT --- */
+@keyframes neonPulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 230, 118, 0.4), inset 0 0 5px rgba(0, 230, 118, 0.2);
+    border-color: rgba(0, 230, 118, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.9), 0 0 35px rgba(255, 59, 69, 0.6), inset 0 0 10px rgba(0, 230, 118, 0.5);
+    border-color: #00e676;
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 230, 118, 0.4), inset 0 0 5px rgba(0, 230, 118, 0.2);
+    border-color: rgba(0, 230, 118, 0.6);
+  }
+}
+
+.btn-hot-pulse, .btn-new-pulse, .buy-button, .btn-buy-now {
+  position: relative;
+  border: 1px solid #00e676;
+  background: linear-gradient(135deg, rgba(8, 8, 15, 0.9), rgba(18, 18, 31, 0.9));
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  animation: neonPulseGlow 2s infinite;
+}
+
+.btn-hot-pulse:hover, .btn-new-pulse:hover, .buy-button:hover, .btn-buy-now:hover {
+  background: #00e676;
+  color: #000000;
+  box-shadow: 0 0 25px #00e676, 0 0 45px #00e676;
+  transform: translateY(-2px);
+}
+
+/* --- KHUNG THÔNG BÁO UY TÍN KHÁCH MUA HÀNG (LIVE NOTIFICATION) --- */
+.live-trust-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(8, 8, 15, 0.95);
+  border: 1px solid #00e676;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  transform: translateX(-120%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 320px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.live-trust-toast.show {
+  transform: translateX(0);
+}
+
+.live-trust-toast i {
+  font-size: 24px;
+  color: #00e676;
+  filter: drop-shadow(0 0 5px #00e676);
+}
+
+.live-trust-toast .toast-content h4 {
+  font-size: 13px;
+  color: #ffffff;
+  margin: 0 0 2px 0;
+  font-weight: 700;
+}
+
+.live-trust-toast .toast-content p {
+  font-size: 11px;
+  color: #a0a0c0;
+  margin: 0;
+}
+/* ==================== CYBERPUNK CHECKOUT MODAL (BẢNG CHUYỂN KHOẢN CAO CẤP) ==================== */
+#checkoutDialog {
+  background: rgba(5, 5, 8, 0.95);
+  border: 2px solid #00e676;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(0, 230, 118, 0.5), inset 0 0 20px rgba(0, 230, 118, 0.15);
+  padding: 0;
+  max-width: 440px;
+  width: 92%;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  animation: modalScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#checkoutDialog::backdrop {
+  background: rgba(2, 2, 5, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-box {
+  padding: 24px;
+  position: relative;
+}
+
+/* Nút đóng X phong cách cyberpunk */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 59, 69, 0.5);
+  color: #ff3b45;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #ff3b45;
+  color: #fff;
+  box-shadow: 0 0 15px #ff3b45;
+}
+
+/* Tiêu đề bảng */
+.modal-head {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #00e676;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 0 10px rgba(0, 230, 118, 0.6);
+}
+
+.checkout-body p {
+  font-size: 13px;
+  color: #c0c0d0;
+  margin: 6px 0;
+}
+
+/* Hộp chứa mã đơn hàng */
+.code-box {
+  background: rgba(18, 18, 31, 0.8);
+  border: 1px dashed #00e676;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.code-box span {
+  font-family: monospace;
+  font-size: 13px;
+  color: #00e676;
+}
+
+.copy-btn {
+  background: #00e676;
+  color: #000;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #fff;
+  box-shadow: 0 0 10px #00e676;
+}
+
+/* Khung QR Code lung linh */
+.qr-box {
+  background: linear-gradient(135deg, rgba(12, 12, 22, 0.9), rgba(20, 20, 35, 0.9));
+  border: 1px solid rgba(0, 230, 118, 0.4);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+#qrImage {
+  border-radius: 6px;
+  border: 2px solid #00e676;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+  max-width: 200px;
+  width: 100%;
+}
+
+#qrMessage {
+  font-family: monospace;
+  font-size: 10px !important;
+  color: #00e676 !important;
+  margin-top: 8px !important;
+  letter-spacing: 0.5px;
+}
+
+/* Nút hành động xác nhận Zalo */
+.zalo-confirm-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #00e676, #00b0ff);
+  color: #050508;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 16px;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+  transition: all 0.3s ease;
+}
+
+.zalo-confirm-btn:hover {
+  background: #fff;
+  box-shadow: 0 0 25px #00e676, 0 0 40px #00b0ff;
+  transform: translateY(-2px);
+}
+/* ==================== HERO STATS CYBERPUNK NÂNG CẤP ==================== */
+.hero-desc {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #c0c0d0;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+}
+
+.hero-stats {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(8, 8, 15, 0.9), rgba(18, 18, 35, 0.9));
+  border: 1.5px solid rgba(0, 230, 118, 0.4);
+  border-radius: 14px;
+  padding: 14px 22px;
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.2), inset 0 0 15px rgba(0, 230, 118, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hiệu ứng ánh sáng quét qua viền cực chất */
+.hero-stats::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg, transparent, rgba(0, 230, 118, 0.15), transparent);
+  transform: rotate(45deg);
+  animation: borderScan 4s linear infinite;
+}
+
+@keyframes borderScan {
+  0% { transform: translateY(-100%) rotate(45deg); }
+  100% { transform: translateY(100%) rotate(45deg); }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+}
+
+.stat-item strong {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00e676, #00b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(0, 230, 118, 0.6));
+  letter-spacing: 0.5px;
+}
+
+.stat-item small {
+  font-family: monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #a0a0c0;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 230, 118, 0.5), transparent);
+  z-index: 1;
+}
+/* ==================== TIÊU ĐỀ THƯƠNG HIỆU TÙNG DƯƠNG SHOP SIÊU XỊN ==================== */
+h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 36px; /* Đã thu nhỏ lại gọn gàng, tinh tế */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+  text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+}
+
+/* Hiệu ứng bóng ma (Glitch / Cyber Neon) mờ ảo phía sau */
+h1::before,
+h1::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+h1::before {
+  color: #ff3b45;
+  animation: cyberpunkGlitch1 3s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  transform: translateX(-2px);
+}
+
+h1::after {
+  color: #00b0ff;
+  animation: cyberpunkGlitch2 2.5s infinite linear alternate-reverse;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+}
+
+/* Màu điểm nhấn cho chữ SHOP */
+h1 span {
+  background: linear-gradient(135deg, #00e676, #00b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.8));
+}
+
+/* Hiệu ứng chớp nháy phong cách hacker */
+@keyframes cyberpunkGlitch1 {
+  0% { transform: translateX(0); opacity: 0.8; }
+  20% { transform: translateX(-3px) translateY(1px); opacity: 0.5; }
+  40% { transform: translateX(2px) translateY(-1px); opacity: 0.9; }
+  60% { transform: translateX(-1px) translateY(2px); opacity: 0.4; }
+  80% { transform: translateX(3px) translateY(-2px); opacity: 0.7; }
+  100% { transform: translateX(0); opacity: 0.8; }
+}
+
+@keyframes cyberpunkGlitch2 {
+  0% { transform: translateX(0); opacity: 0.8; }
+  25% { transform: translateX(3px) translateY(-1px); opacity: 0.6; }
+  50% { transform: translateX(-2px) translateY(2px); opacity: 0.9; }
+  75% { transform: translateX(1px) translateY(-2px); opacity: 0.4; }
+  100% { transform: translateX(0); opacity: 0.8; }
+}
+/* ==================== TỐI ƯU HÓA MOBILE & PC MƯỢT MÀ 60 FPS ==================== */
+
+/* Ép mọi phần tử hiển thị chuẩn box-sizing để không bị tràn viền màn hình điện thoại */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Chống cuộn ngang làm giật màn hình di động */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Kích hoạt tăng tốc phần cứng GPU cho các hiệu ứng chuyển động */
+.product-card, .btn-buy-now, .btn-add-cart, .cat-tab-btn, .hero-stats, h1 {
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+
+/* ==================== RESPONSIVE CHO TABLET & MOBILE (DƯỚI 992px) ==================== */
+@media screen and (max-width: 992px) {
+  /* Thu nhỏ padding các section chính để tiết kiệm không gian điện thoại */
+  .section {
+    padding: 30px 15px;
+  }
+
+  /* Tiêu đề thương hiệu trên mobile gọn gàng hơn */
+  h1 {
+    font-size: 26px !important;
+    letter-spacing: 1.5px;
+  }
+
+  /* Căn chỉnh lại khu vực Hero / Header trên mobile */
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  .stat-item {
+    padding: 5px 10px;
+  }
+
+  .stat-divider {
+    height: 20px;
+  }
+
+  /* Thanh chuyển danh mục dạng lướt ngang mượt mà trên di động */
+  .category-tabs-attention {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-tabs-attention::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn thừa trên mobile */
+  }
+
+  .cat-tab-btn {
+    flex: 0 0 auto;
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  /* Lưới sản phẩm tự động co giãn 2 cột hoặc 1 cột gọn gàng trên mobile */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .product-card {
+    padding: 12px !important;
+  }
+
+  .product-card h3 {
+    font-size: 14px !important;
+    line-height: 1.3;
+  }
+
+  .product-card p {
+    font-size: 11px !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Nút mua hàng và thêm giỏ hàng tối ưu cho ngón tay bấm (Touch-friendly) */
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn-buy-now, .btn-add-cart, .buy-button, .add-cart-button {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+    width: 100%;
+  }
+
+  /* Bảng Modal Thanh Toán căn chỉnh vừa khít màn hình điện thoại */
+  #checkoutDialog {
+    width: 95% !important;
+    padding: 0;
+    margin: auto;
+  }
+  
+  .modal-box {
+    padding: 16px !important;
+  }
+}
+
+/* ==================== CHO ĐIỆN THOẠI MÀN HÌNH NHỎ (DƯỚI 480px) ==================== */
+@media screen and (max-width: 480px) {
+  /* Chuyển lưới sản phẩm về 1 cột hoặc 2 cột mini cực kỳ tối ưu chống tràn */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  h1 {
+    font-size: 22px !important;
+  }
+
+  .hero-desc {
+    font-size: 12px !important;
+  }
+
+  .stat-item strong {
+    font-size: 18px !important;
+  }
+  
+  .stat-item small {
+    font-size: 9px !important;
+  }
+}
+/* ==================== KHÓA TOÀN BỘ SCALE/ZOOM & CHỐNG TRÀN LAYOUT ==================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Chống zoom toàn trang trên mobile khi double tap */
+  touch-action: manipulation; 
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Chống cuộn ngang gây lệch màn hình */
+  -webkit-font-smoothing: antialiased;
+  /* Chống hành vi kéo dãn trang trên mobile */
+  overscroll-behavior-y: none; 
+}
+
+/* Đảm bảo tất cả các nút bấm, ảnh và card không bị scale giật cục khi active/hover */
+button, a, .product-card, .cat-tab-btn {
+  transform: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Cố định kích thước ảnh sản phẩm không bị méo hoặc co giãn bất thường */
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Khóa dialog/popup không bị scale phóng to thu nhỏ khi bật */
+dialog {
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+.btn-buy-now {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Tạo lớp phủ la-de chạy viền */
+.btn-buy-now::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(90deg, #00e676, #00b0ff, #ff3b45, #00e676);
+  background-size: 300% 300%;
+  z-index: -1;
+  border-radius: 8px;
+  animation: neonBorderRun 4s linear infinite;
+}
+
+@keyframes neonBorderRun {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Làm nền tối bên trong để tôn viền sáng */
+.btn-buy-now span, .btn-buy-now {
+  background-color: #0c0c14;
+}
+/* ==================== KHUNG THÔNG TIN THANH TOÁN CYBERPUNK ==================== */
+.notice-cyber {
+  background: linear-gradient(135deg, rgba(12, 12, 22, 0.95), rgba(20, 20, 38, 0.95));
+  border: 1.5px solid var(--neon-green);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 30px auto 20px;
+  max-width: 1200px;
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.2), inset 0 0 15px rgba(0, 230, 118, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hiệu ứng quét ánh sáng chạy qua khung */
+.notice-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 230, 118, 0.1), transparent);
+  animation: noticeScan 6s linear infinite;
+}
+
+@keyframes noticeScan {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.notice-header i {
+  color: var(--neon-green);
+  font-size: 16px;
+  filter: drop-shadow(0 0 5px var(--neon-green));
+}
+
+.notice-header strong {
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-main);
+}
+
+.notice-cyber p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.notice-cyber p strong {
+  color: var(--neon-green);
+  font-family: monospace;
+  font-size: 13px;
+  background: rgba(0, 230, 118, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px dashed rgba(0, 230, 118, 0.4);
+}
+/* ==================== TOPBAR BRAND & LOGO CYBERPUNK NÂNG CẤP ==================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(8, 8, 15, 0.95);
+  border-bottom: 1px solid rgba(0, 230, 118, 0.3);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  position: relative;
+}
+
+/* Hiệu ứng khung logo phát sáng hơ hơ */
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1.5px solid var(--neon-green);
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.brand-box:hover .brand-logo {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 0 20px var(--neon-green);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.brand-text span b {
+  background: linear-gradient(135deg, var(--neon-green), #00b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(0, 230, 118, 0.8));
+}
+
+.brand-text small {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--neon-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 1px;
+  opacity: 0.85;
+}
+/* ==================== TOPBAR CHUẨN XÁC KHÔNG LỆCH PHA ==================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(8, 8, 15, 0.95);
+  border-bottom: 1px solid rgba(0, 230, 118, 0.3);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1.5px solid var(--neon-green);
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text span {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.brand-text span b {
+  background: linear-gradient(135deg, var(--neon-green), #00b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-text small {
+  font-family: monospace;
+  font-size: 8px;
+  color: var(--neon-green);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Khu vực nút bên phải Topbar (Giỏ hàng + Zalo) */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-btn, .support-link {
+  background: rgba(18, 18, 31, 0.9);
+  border: 1px solid rgba(0, 230, 118, 0.4);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cart-btn:hover, .support-link:hover {
+  border-color: var(--neon-green);
+  background: rgba(0, 230, 118, 0.1);
+}
+
+.cart-badge {
+  background: var(--neon-red);
+  color: #fff;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-weight: 900;
+}
+
+.support-link {
+  color: var(--neon-green);
+}
+
+/* Responsive cho điện thoại nhỏ */
+@media screen and (max-width: 480px) {
+  .topbar {
+    padding: 8px 10px;
+  }
+  .brand-text small {
+    display: none; /* Ẩn bớt dòng phụ trên màn hình quá nhỏ để tiết kiệm chỗ */
+  }
+  .cart-btn, .support-link {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+}
+/* Hiệu ứng đổi màu gây chú ý cực mạnh cho nút Mua Ngay Danh mục 1 */
+@keyframes cyberGlowRed {
+  0% {
+    background-color: #ff3b45;
+    box-shadow: 0 0 5px rgba(255, 59, 69, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    background-color: #ff5252;
+    box-shadow: 0 0 20px rgba(255, 82, 82, 0.9), 0 0 35px rgba(255, 59, 69, 0.6);
+    transform: scale(1.03);
+  }
+  100% {
+    background-color: #ff3b45;
+    box-shadow: 0 0 5px rgba(255, 59, 69, 0.4);
+    transform: scale(1);
+  }
+}
+
+.btn-buy-now.pulse-attention {
+  animation: cyberGlowRed 1.8s infinite ease-in-out;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+.hero-img-box {
+  width: 240px;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1.5px solid var(--cyber-red);
+  box-shadow: 0 0 30px var(--cyber-red-glow);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hero-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Khung chứa quả cầu thiên hà 3D */
+.hero-galaxy-container {
+  width: 280px;
+  height: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 59, 69, 0.15) 0%, rgba(7, 9, 15, 0.9) 80%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 59, 69, 0.4);
+  box-shadow: 0 0 50px rgba(255, 59, 69, 0.3), inset 0 0 30px rgba(255, 59, 69, 0.2);
+  overflow: hidden;
+}
+
+/* Quả cầu thiên hà xoay 3D */
+.galaxy-sphere {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%, #ff3b45 0deg, #07090f 90deg, #ff7675 180deg, #ff1e2a 270deg, #ff3b45 360deg);
+  box-shadow: inset 0 0 30px #000, 0 0 35px var(--cyber-red);
+  animation: rotateGalaxy 12s linear infinite;
+  position: absolute;
+  opacity: 0.85;
+}
+
+@keyframes rotateGalaxy {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); filter: hue-rotate(15deg); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Các vòng hào quang quỹ đạo quét qua */
+.galaxy-ring {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px dashed rgba(255, 59, 69, 0.6);
+  border-radius: 50%;
+  animation: spinRing 20s linear infinite;
+  pointer-events: none;
+}
+.galaxy-ring:nth-child(2) {
+  width: 255px;
+  height: 255px;
+  border: 1px solid rgba(255, 59, 69, 0.3);
+  animation: spinRing 15s linear infinite reverse;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Lớp chữ in nổi TÙNG DƯƠNG SHOP ở trung tâm */
+.galaxy-content-card {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  background: rgba(13, 17, 23, 0.85);
+  border: 1.5px solid var(--cyber-red);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px var(--cyber-red-glow);
+  backdrop-filter: blur(6px);
+  width: 180px;
+}
+.galaxy-content-card small {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 4px;
+}
+.galaxy-content-card strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+.galaxy-content-card strong span {
+  color: var(--cyber-red);
+  text-shadow: 0 0 15px var(--cyber-red);
+}
+.galaxy-content-card i {
+  display: block;
+  font-style: normal;
+  font-size: 10px;
+  color: #ff7675;
+  margin-top: 6px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+/* Khung chứa thu nhỏ gọn gàng, vừa vặn */
+.hero-galaxy-container {
+  width: 210px;
+  height: 210px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 59, 69, 0.2) 0%, #07090f 75%);
+  border-radius: 50%;
+  border: 1.5px solid var(--cyber-red);
+  box-shadow: 0 0 35px var(--cyber-red-glow), inset 0 0 20px rgba(255, 59, 69, 0.4);
+}
+
+/* Hiệu ứng quả cầu xoay chiều sâu tối giản, chân thật */
+.galaxy-sphere {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff5252 0%, #7a0c13 45%, #05070b 85%);
+  box-shadow: inset -10px -10px 25px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 59, 69, 0.5);
+  position: absolute;
+  animation: smoothRotate 15s linear infinite;
+}
+
+@keyframes smoothRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bảng chữ in nổi TÙNG DƯƠNG SHOP tinh tế ở trung tâm */
+.galaxy-content-card {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  background: rgba(7, 9, 15, 0.85);
+  border: 1px solid rgba(255, 59, 69, 0.5);
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+.galaxy-content-card small {
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 2px;
+}
+.galaxy-content-card strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+.galaxy-content-card strong span {
+  color: var(--cyber-red);
+  text-shadow: 0 0 12px var(--cyber-red);
+}
+/* Khung chứa cân đối, kích thước hoàn hảo */
+.hero-galaxy-container {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 59, 69, 0.25) 0%, rgba(7, 9, 15, 0.95) 80%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 59, 69, 0.6);
+  box-shadow: 0 0 40px var(--cyber-red-glow), inset 0 0 25px rgba(255, 59, 69, 0.4);
+}
+
+/* Hiệu ứng quả cầu 3D chân thật, có độ bóng chiều sâu không gian */
+.galaxy-sphere {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff5252 0%, #990f19 40%, #030508 85%);
+  box-shadow: inset -15px -15px 35px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 59, 69, 0.6);
+  position: absolute;
+  animation: smoothRotate 20s linear infinite;
+}
+
+@keyframes smoothRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Vòng quỹ đạo ánh sáng quét qua cực mượt */
+.galaxy-orbit-ring {
+  position: absolute;
+  width: 195px;
+  height: 195px;
+  border: 1px dashed rgba(255, 59, 69, 0.4);
+  border-radius: 50%;
+  animation: spinOrbit 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spinOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Bảng chữ in nổi TÙNG DƯƠNG SHOP tinh tế ở trung tâm */
+.galaxy-content-card {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  background: rgba(13, 17, 23, 0.9);
+  border: 1.5px solid var(--cyber-red);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255, 59, 69, 0.4);
+  backdrop-filter: blur(6px);
+}
+.galaxy-content-card small {
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 2.5px;
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 800;
+}
+.galaxy-content-card strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+.galaxy-content-card strong span {
+  color: var(--cyber-red);
+  text-shadow: 0 0 15px var(--cyber-red);
+}
+/* Khung chứa cân đối, tự động thu nhỏ mượt mà trên mobile */
+.hero-galaxy-container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 59, 69, 0.25) 0%, rgba(7, 9, 15, 0.95) 80%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 59, 69, 0.6);
+  box-shadow: 0 0 35px var(--cyber-red-glow), inset 0 0 20px rgba(255, 59, 69, 0.4);
+  animation: containerColorShift 8s infinite alternate ease-in-out;
+}
+
+@keyframes containerColorShift {
+  0% {
+    border-color: rgba(255, 59, 69, 0.6);
+    box-shadow: 0 0 30px rgba(255, 59, 69, 0.4), inset 0 0 20px rgba(255, 59, 69, 0.3);
+  }
+  50% {
+    border-color: rgba(0, 230, 118, 0.6);
+    box-shadow: 0 0 35px rgba(0, 230, 118, 0.4), inset 0 0 20px rgba(0, 230, 118, 0.3);
+  }
+  100% {
+    border-color: rgba(255, 152, 0, 0.6);
+    box-shadow: 0 0 30px rgba(255, 152, 0, 0.4), inset 0 0 20px rgba(255, 152, 0, 0.3);
+  }
+}
+
+/* Quả cầu 3D chân thật với hiệu ứng đổi màu chuyển sắc mượt mà */
+.galaxy-sphere {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff5252 0%, #990f19 40%, #030508 85%);
+  box-shadow: inset -12px -12px 30px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 59, 69, 0.5);
+  position: absolute;
+  animation: smoothRotate 18s linear infinite, sphereColorShift 8s infinite alternate ease-in-out;
+}
+
+@keyframes smoothRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sphereColorShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(120deg); /* Chuyển sang tông xanh lục ảo diệu */
+  }
+  100% {
+    filter: hue-rotate(240deg); /* Chuyển sang tông vàng cam năng lượng */
+  }
+}
+
+/* Vòng quỹ đạo ánh sáng quét qua */
+.galaxy-orbit-ring {
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  border: 1px dashed rgba(255, 59, 69, 0.4);
+  border-radius: 50%;
+  animation: spinOrbit 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spinOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Bảng chữ in nổi TÙNG DƯƠNG SHOP tinh tế ở trung tâm */
+.galaxy-content-card {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  background: rgba(13, 17, 23, 0.9);
+  border: 1.5px solid var(--cyber-red);
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 59, 69, 0.4);
+  backdrop-filter: blur(6px);
+}
+.galaxy-content-card small {
+  font-size: 7px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 800;
+}
+.galaxy-content-card strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  text-shadow: 0 0 8px rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+.galaxy-content-card strong span {
+  color: var(--cyber-red);
+  text-shadow: 0 0 12px var(--cyber-red);
+}
+
+/* Responsive tối ưu riêng cho điện thoại (Mobile) */
+@media (max-width: 768px) {
+  .hero-galaxy-container {
+    width: 170px;
+    height: 170px;
+  }
+  .galaxy-sphere {
+    width: 120px;
+    height: 120px;
+  }
+  .galaxy-orbit-ring {
+    width: 145px;
+    height: 145px;
+  }
+  .galaxy-content-card {
+    padding: 8px 10px;
+  }
+  .galaxy-content-card strong {
+    font-size: 10px;
+  }
+  .galaxy-content-card small {
+    font-size: 6px;
+  }
+}
+/* Lớp phủ nền mờ huyền ảo, cinematic */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(3, 5, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeInModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Thẻ card thông báo chính */
+.welcome-card {
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(7, 9, 15, 0.98) 100%);
+  border: 2px solid var(--cyber-red);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 0 50px rgba(255, 59, 69, 0.4), inset 0 0 25px rgba(255, 59, 69, 0.2);
+  overflow: hidden;
+}
+
+/* Thanh quét ánh sáng đỉnh card */
+.welcome-glow-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff5252, #fff, #ff5252, transparent);
+  animation: scanGlowLine 3s linear infinite;
+}
+
+@keyframes scanGlowLine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Header thông báo */
+.welcome-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.cyber-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 59, 69, 0.15);
+  border: 1px solid var(--cyber-red);
+  color: #ff7675;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 10px rgba(255, 59, 69, 0.3);
+}
+.welcome-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  margin: 0 0 6px 0;
+}
+.welcome-header h2 span {
+  color: var(--cyber-red);
+  text-shadow: 0 0 20px var(--cyber-red);
+}
+.welcome-sub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Body nội dung */
+.welcome-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 59, 69, 0.05);
+  border: 1px solid rgba(255, 59, 69, 0.25);
+  padding: 14px 16px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.info-box:hover {
+  background: rgba(255, 59, 69, 0.1);
+  border-color: rgba(255, 59, 69, 0.5);
+  box-shadow: 0 0 15px rgba(255, 59, 69, 0.2);
+}
+.icon-neon {
+  font-size: 20px;
+  color: var(--cyber-red);
+  filter: drop-shadow(0 0 8px var(--cyber-red));
+  margin-top: 2px;
+}
+.info-box strong {
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+}
+.info-box p {
+  font-size: 11px;
+  color: #b0bec5;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Khung cảnh báo Zalo chính chủ */
+.welcome-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.4);
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #ffb74d;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.welcome-alert i {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.welcome-alert strong {
+  color: #fff;
+}
+
+/* Footer & Nút bấm vào cửa hàng */
+.welcome-footer {
+  text-align: center;
+}
+.cyber-btn-welcome {
+  width: 100%;
+  background: linear-gradient(135deg, #ff3b45 0%, #b71c1c 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 0 25px rgba(255, 59, 69, 0.6);
+  transition: all 0.3s ease;
+}
+.cyber-btn-welcome:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #d32f2f 100%);
+  box-shadow: 0 0 35px rgba(255, 59, 69, 0.9), 0 0 15px #fff;
+  transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+  <!-- Canvas Hạt Ánh Sáng Nền -->
+<canvas id="bgCanvas"></canvas>
+
+<header class="topbar">
+  <a class="brand-box" href="#">
+    <img src="https://i.vgy.me/ysm6Yr.png" alt="Logo Tùng Dương Shop" class="brand-logo">
+    <div class="brand-text">
+      <span>TÙNG DƯƠNG <b>SHOP</b></span>
+      <small>AIMLOCK GAMING STORE</small>
+    </div>
+  </a>
+  
+  <div class="topbar-right">
+    <button class="cart-btn" id="openCartBtn">
+      <i class="fa-solid fa-cart-shopping"></i> Giỏ <span class="cart-badge" id="cartCount">0</span>
+    </button>
+    <a class="support-link" id="headerZalo" href="https://zalo.me/0352035713" target="_blank" rel="noopener">
+      <i class="fa-solid fa-paper-plane"></i> Zalo ↗
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow-wrap">
+        <span class="status-dot"></span>
+        <p class="eyebrow">GAMING • DPI • SENSITIVITY</p>
+      </div>
+      
+      <h1 data-text="TÙNG DƯƠNG SHOP">TÙNG DƯƠNG <span>SHOP</span></h1>
+      
+      <p class="hero-tagline">
+        <i class="fa-solid fa-shield-halved"></i> UY TÍN • 
+        <i class="fa-solid fa-bolt"></i> CHẤT LƯỢNG • 
+        <i class="fa-solid fa-lock"></i> BẢO MẬT
+      </p>  
+      
+      <p class="hero-desc">
+  GIÁ CẢ MINH BẠCH — UY TÍN TẠO NÊN THƯƠNG HIỆU<br>
+  LỰA CHỌN GÓI HỖ TRỢ KÉO TÂM PHÙ HỢP VỚI BẠN 
+</p>
+
+<!-- Thông số uy tín xịn xò Cyberpunk -->
+<div class="hero-stats">
+  <div class="stat-item">
+    <strong>100%</strong>
+    <small>An Toàn</small>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <strong>5.0★</strong>
+    <small>Đánh Giá</small>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <strong>24/7</strong>
+    <small>Hỗ Trợ</small>
+  </div>
+</div>
+
+      <a class="primary-button" href="#products">
+      <i class="fa-solid fa-crosshairs"></i> KHÁM PHÁ 12 GÓI SẢN PHẨM <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+
+<div class="hero-art" aria-label="Tùng Dương Shop 3D Mobile Optimized">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="crosshair">＋</div>
+    
+    <div class="hero-galaxy-container">
+      <div class="galaxy-orbit-ring"></div>
+      <div class="galaxy-sphere"></div>
+      
+      <div class="galaxy-content-card">
+        <small>AIMLOCK PREMIUM</small>
+        <strong>TÙNG DƯƠNG <span>SHOP</span></strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HACKER TERMINAL BANNER ==================== -->
+<div class="hacker-banner-section">
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot-red"></span>
+        <span class="dot-yellow"></span>
+        <span class="dot-green"></span>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CỬA HÀNG & NÚT CHUYỂN DANH MỤC NỔI BẬT ==================== -->
+<section class="section" id="products">
+  <div class="section-heading-inline">
+    <div class="heading-left">
+      <p class="eyebrow"><i class="fa-solid fa-fire-flame-curved"></i> CỬA HÀNG ONLINE</p>
+      <h2 id="catTitle">Danh sách sản phẩm (12 Gói Hot)</h2>
+    </div>
+
+    <!-- Nút Chuyển Tab Cyberpunk Gây Chú Ý Cực Mạnh -->
+    <div class="category-tabs-attention">
+      <button class="cat-tab-btn active btn-hot-pulse" id="tabCat1" onclick="switchCategory(1)">
+        <i class="fa-solid fa-fire flame-icon"></i> 
+        <span>SẢN PHẨM </span>
+        <span class="hot-badge"> 1</span>
+      </button>
+
+      <button class="cat-tab-btn btn-new-pulse" id="tabCat2" onclick="switchCategory(2)">
+        <i class="fa-solid fa-gamepad"></i> 
+        <span>SẢN PHẨM 2</span>
+        <span class="new-tag-glow">MỚI</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="section-heading" style="margin-top: -10px; margin-bottom: 20px;">
+    <span class="section-note">Thanh toán chuyển khoản MB Bank tự động</span>
+  </div>
+
+  <!-- DANH MỤC 1: Render tự động qua JS -->
+  <div class="product-grid" id="productGrid"></div>
+  
+ <!-- DANH MỤC 2: 9 Sản phẩm nguyên bản chuẩn chỉnh của bạn -->
+  <div class="product-grid" id="productGridCat2" style="display: none;">
+     
+     <!-- SP 1 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://cdn.phototourl.com/member/2026-10-16-08e169ed-8888-479c-b226-bb27db18ca60.jpg" alt="MENU MIGUL">
+         <span class="product-badge"><i class="fa-solid fa-bolt"></i> SPECIAL</span>
+       </div>
+       <div>
+         <h3>MENU MIGUL</h3>
+         <p>AIMBOT . AIMSLIEN . ESP . VÀ NHIỀU CHỨC NĂNG KHÁC . ANTIBAN LEO RANK</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">500.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('MENU MIGUL', 500000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'migul', name: 'MENU MIGUL', price: 500000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 2 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="PROXY AIM IPA">
+         <span class="product-badge"><i class="fa-solid fa-apple"></i> VIP</span>
+       </div>
+       <div>
+         <h3>PROXY AIM IPA</h3>
+         <p>ESP LINE . AIM ĐẦU . AIMSLIEN . VÀ NHIỀU CHỨC NĂNG KHÁC...</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">200.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('PROXY AIM IPA', 200000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'proxy', name: 'PROXY AIM IPA', price: 200000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 3 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="APP HỖ TRỢ KÉO TÂM">
+         <span class="product-badge"><i class="fa-solid fa-fire"></i> VIP</span>
+       </div>
+       <div>
+         <h3>APP HỖ TRỢ KÉO TÂM</h3>
+         <p>APP NÀY VĨNH VIỄN . SENSITIVITY . GIẢM DELAY . UNLOCK 120FPS . AIMMODE . HEADSHOT PRO . AIMSSIT</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">299.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('APP HỖ TRỢ KÉO TÂM', 299000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'appkeotam', name: 'APP HỖ TRỢ KÉO TÂM', price: 299000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 4 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="HỖ TRỢ KÉO TÂM V2">
+         <span class="product-badge"><i class="fa-solid fa-crosshairs"></i> VIP</span>
+       </div>
+       <div>
+         <h3>HỖ TRỢ KÉO TÂM V2</h3>
+         <p>FIX RUNG LỐ V2 . FIX TÂM NẶNG . FIX LỐ ĐẦU . ĐẠN LẠC . BÁM ĐẦU . TÂM NHẠY DỄ KÉO</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">249.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('HỖ TRỢ KÉO TÂM V2', 249000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'keotamv2', name: 'HỖ TRỢ KÉO TÂM V2', price: 249000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 5 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="HỖ TRỢ KÉO TÂM V3">
+         <span class="product-badge"><i class="fa-solid fa-crown"></i> PRO MAX</span>
+       </div>
+       <div>
+         <h3>HỖ TRỢ KÉO TÂM V3</h3>
+         <p>CẢI THIỆN MÁY LAG . FIX RUNG LỐ V3 . BÁM ĐẦU 80% . KÉO NHẸ LÀ ĐỎ . VĨNH VIỄN</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">399.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('HỖ TRỢ KÉO TÂM V3', 399000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'keotamv3', name: 'HỖ TRỢ KÉO TÂM V3', price: 399000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 6 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="Gói Giảm Ping & Lag Game">
+         <span class="product-badge"><i class="fa-solid fa-gauge-high"></i> BOOST FPS</span>
+       </div>
+       <div>
+         <h3>Gói Giảm Ping & Lag Game</h3>
+         <p>Dọn dẹp RAM ngầm, tối ưu đường truyền mạng giúp chơi mượt 120 FPS.</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">79.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('Gói Giảm Ping & Lag Game', 79000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'giamping', name: 'Gói Giảm Ping & Lag Game', price: 79000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 7 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="Gói Fix Rung Tâm Free Fire">
+         <span class="product-badge"><i class="fa-solid fa-shield-cat"></i> STABLE</span>
+       </div>
+       <div>
+         <h3>Gói Fix Rung Tâm Free Fire</h3>
+         <p>Giúp tâm sấy ổn định không bị bay ra ngoài khi xả đạn liên tục.</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">129.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('Gói Fix Rung Tâm Free Fire', 129000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'fixrung', name: 'Gói Fix Rung Tâm Free Fire', price: 129000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 8 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="Combo AimLock + DPI Vĩnh Viễn">
+         <span class="product-badge"><i class="fa-solid fa-gem"></i> ULTIMATE</span>
+       </div>
+       <div>
+         <h3>Combo AimLock + DPI Vĩnh Viễn</h3>
+         <p>Trọn bộ hỗ trợ cao cấp nhất, bảo hành cập nhật trọn đời từ Admin.</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">799.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('Combo AimLock + DPI Vĩnh Viễn', 799000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'comboaimlock', name: 'Combo AimLock + DPI Vĩnh Viễn', price: 799000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- SP 9 -->
+     <div class="product-card">
+       <div class="product-img-box">
+         <img src="https://i.ibb.co/xqbg4X0X/IMG-2565.png" alt="Gói AIMDRAG">
+         <span class="product-badge"><i class="fa-solid fa-headset"></i> VIP</span>
+       </div>
+       <div>
+         <h3>Gói AIMDRAG</h3>
+         <p>KHÔNG KÉO SẼ VÀNG . 1 KHI KÉO SẼ GHIM ĐẦU . FIX RUNG . ĐẠN THẲNG . CÂN CHECK TÂM</p>
+       </div>
+       <div>
+         <div class="price-wrap">
+           <span class="price-current">450.000đ</span>
+         </div>
+         <div class="card-actions">
+           <button class="btn-buy-now" onclick="openCheckoutDialog('Gói AIMDRAG', 450000)">MUA NGAY</button>
+           <button class="btn-add-cart" onclick="addToCart({id: 'aimdrag', name: 'Gói AIMDRAG', price: 450000})">+ GIỎ HÀNG</button>
+         </div>
+       </div>
+     </div>
+
+  </div>
+</section>
+
+<!-- Thông Tin Thanh Toán Cyberpunk -->
+<section class="notice-cyber">
+  <div class="notice-header">
+    <i class="fa-solid fa-shield-halved"></i>
+    <strong>Hệ Thống Thanh Toán Tự Động MB Bank</strong>
+  </div>
+  <p>
+    Số tài khoản: <strong>0000116312345</strong> (MB Bank - LE TUNG DUONG). 
+    Hệ thống quét mã QR tự động xác thực lệnh chuyển khoản. Vui lòng kiểm tra kỹ tên chủ tài khoản trước khi hoàn tất giao dịch!
+  </p>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> Tùng Dương Shop</span>
+  <a id="footerZalo" href="#" target="_blank" rel="noopener">Liên hệ Zalo</a>
+</footer>
+
+<div id="welcomeModal" class="welcome-overlay">
+  <div class="welcome-card">
+    <div class="welcome-glow-line"></div>
+    
+    <div class="welcome-header">
+      <span class="cyber-badge"><i class="fa-solid fa-shield-halved"></i> SYSTEM ONLINE</span>
+      <h2>TÙNG DƯƠNG <span>SHOP</span></h2>
+      <p class="welcome-sub">HỆ THỐNG CUNG CẤP GÓI DPI & AIMLOCK PREMIUM</p>
+    </div>
+
+    <div class="welcome-body">
+      <div class="info-box">
+        <i class="fa-solid fa-bolt icon-neon"></i>
+        <div>
+          <strong>UY TÍN - AN TOÀN - CHẤT LƯỢNG - BẢO MẬT</strong>
+          <p>CHÍNH SÁCH LỖI 1 ĐỔI 1 TRONG SUỐT THỜI GIAN SỬ DỤNG</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <i class="fa-solid fa-qrcode icon-neon"></i>
+        <div>
+          <strong>Thanh Toán Nhanh Tự Động</strong>
+          <p>Quét QR VietQR MB Bank tự động xác nhận sau vài giây.</p>
+        </div>
+      </div>
+
+      <div class="welcome-alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Lưu ý: Zalo chính chủ <strong>0352035713</strong> (Lê Tùng Dương). Vui lòng kiểm tra kỹ trước khi giao dịch.</span>
+      </div>
+    </div>
+
+    <div class="welcome-footer">
+      <button id="closeWelcomeBtn" class="cyber-btn-welcome">
+        <span>VÀO CỬA HÀNG</span>
+        <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOG THANH TOÁN QR VIETQR MB BANK -->
+<dialog id="checkoutDialog" class="checkout-modal">
+  <div class="modal-box">
+    <button id="closeDialog" class="close-btn">&times;</button>
+    <h3 class="modal-head"><i class="fa-solid fa-qrcode"></i> THANH TOÁN QR MB BANK</h3>
+    
+    <div class="checkout-body">
+      <p>Sản phẩm: <strong id="checkoutTitle" style="color: #00e676; font-size: 14px;">---</strong></p>
+      <p>Số tiền: <strong id="checkoutPrice" style="color: #ff3b45; font-size: 15px;">0đ</strong></p>
+      
+      <div class="code-box">
+        <span>Nội dung CK: <strong id="orderCode">TDXXXX</strong></span>
+        <button id="copyCode" class="copy-btn">Sao chép</button>
+      </div>
+
+      <div class="qr-box" style="text-align: center; margin: 15px 0;">
+        <img id="qrImage" src="" alt="Mã QR VietQR MB Bank" style="max-width:220px; width:100%; border-radius:8px; border:2px solid #00e676;">
+        <p id="qrMessage" style="font-size: 11px; color: #888; margin-top: 5px;">Đang khởi tạo mã QR thanh toán...</p>
+      </div>
+
+      <div class="actions">
+        <a id="zaloOrder" href="https://zalo.me/0352035713" target="_blank" class="zalo-confirm-btn">
+          <i class="fa-solid fa-paper-plane"></i> ĐÃ THANH TOÁN 
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- 3. Dialog Giỏ Hàng -->
+<dialog id="cartDialog">
+  <button class="dialog-close" id="closeCartDialog" aria-label="Đóng">×</button>
+  <p class="eyebrow">GIỎ HÀNG CỦA BẠN</p>
+  <h2>Danh sách đã chọn</h2>
+  <div class="cart-items-list" id="cartItemsList">
+    <p style="color:var(--muted); font-size:12px; text-align:center;">Giỏ hàng đang trống.</p>
+  </div>
+  <div class="order-total"><span>Tổng cộng</span><strong id="cartTotalPrice">0đ</strong></div>
+  <button class="primary-button full" id="checkoutCartBtn">Thanh toán tất cả giỏ hàng</button>
+</dialog>
+
+<!-- 4. Toast Thông Báo -->
+<div id="toast" class="toast-notification">
+  <div class="toast-icon"></div>
+  <span id="toastText">Đã thêm sản phẩm vào giỏ hàng!</span>
+</div>
+
+<!-- 5. Mini Notification Pill (Chạy đơn hàng động) -->
+<div id="liveNotify" class="mini-cyber-notify">
+  <span class="status-dot"></span>
+  <i class="fa-solid fa-bolt notify-bolt"></i>
+  <div class="notify-text-wrap">
+    <p id="notifyText">Khách <strong>097***</strong> vừa chốt <span>Gói AimLock VIP 2</span></p>
+    <small id="notifyTime">Vừa xong</small>
+  </div>
+  <button class="notify-close" id="closeNotify" aria-label="Đóng">&times;</button>
+</div>
+
+<!-- 6. Mini Box Trung Tâm Hỗ Trợ Online & Nút Floating Zalo -->
+<div class="support-widget-wrap">
+  <div id="supportBox" class="support-box">
+    <div class="support-header">
+      <div class="support-title-wrap">
+        <span class="status-online-dot"></span>
+        <strong>TRUNG TÂM HỖ TRỢ</strong>
+      </div>
+      <button id="closeSupportBox" class="support-close-btn">&times;</button>
+    </div>
+
+    <div class="support-body">
+      <div class="admin-avatar-wrap">
+        <i class="fa-solid fa-headset admin-icon"></i>
+        <span class="live-tag">ONLINE</span>
+      </div>
+      <div class="admin-info">
+        <h3>Lê Tùng Dương (Admin)</h3>
+        <p>Hỗ trợ cài đặt DPI & AimLock 24/7</p>
+        <span class="phone-num"><i class="fa-solid fa-phone"></i> 0352.035.713</span>
+      </div>
+    </div>
+
+    <div class="support-footer">
+      <a id="zaloDirectBtn" href="https://zalo.me/0352035713" target="_blank" rel="noopener" class="zalo-chat-now-btn">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span>CHAT ZALO NGAY</span>
+      </a>
+    </div>
+  </div>
+
+  <button id="toggleSupportBtn" class="zalo-float-btn" title="Trung tâm hỗ trợ">
+    <div class="zalo-pulse"></div>
+    <i class="fa-solid fa-comment-dots"></i>
+  </button>
+</div>
+
+<!-- 7. Trình Phát Nhạc -->
+<div class="music-widget-wrap">
+  <audio id="bgMusic" loop preload="metadata">
+    <source src="https://files.catbox.moe/qv3jrx.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="toggleMusicBtn" class="music-float-btn" title="Bật / Tắt nhạc nền">
+    <div class="music-pulse"></div>
+    <i id="musicIcon" class="fa-solid fa-music"></i>
+    <span class="music-tooltip">Nhạc nền</span>
+  </button>
+  
+  <div id="liveTrustToast" class="live-trust-toast">
+    <i class="fa-solid fa-shield-halved"></i>
+    <div class="toast-content">
+      <h4 id="toastCustomerName">Vừa mua: Gói DPI Pro</h4>
+      <p id="toastTimeAgo">Khách hàng tại Hà Nội vừa thanh toán qua MB Bank</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Canvas hiệu ứng nền hạt ánh sáng
+  (() => {
+    const canvas = document.getElementById("bgCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2 + 0.8,
+      alpha: Math.random() * 0.6 + 0.2,
+      speedAlpha: (Math.random() - 0.5) * 0.015,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha += p.speedAlpha;
+        if (p.alpha <= 0.1 || p.alpha >= 0.8) p.speedAlpha *= -1;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 59, 69, ${p.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "rgba(255, 59, 69, 0.8)";
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  // Cấu hình shop & sản phẩm chuẩn
+  window.SHOP_CONFIG = {
+    shopName: "Tùng Dương Shop",
+    zaloPhone: "0352035713",
+    bankAccount: "0000116312345",
+    accountName: "LE TUNG DUONG",
+    bankCode: "MB",
+    products: [
+      { id: "dpi-nhe-tam", name: "DPI NHẸ TÂM", tag: "SẢN PHẨM", description: "NHẸ TÂM . FIX RUNG . BÁM ĐẦU ", price: 150000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "dpi-pro", name: "DPI PRO", tag: "SẢN PHẨM", description: "FIX RUNG . FIX LỐ . CẢI THIỆN MÁU VÀNG . BÁM ĐẦU 85%", price: 300000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "dpi-pro-super", name: "DPI PRO SUPER", tag: "SẢN PHẨM", description: "BÁM ĐẦU , TỐI ƯU FPS . TỐI ƯU THIẾT BỊ . FIX DELAY . SIÊU BÁM VÙNG ĐẦU , KÉO NHẸ LÀ FULL ĐỎ 93%", price: 500000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "nhe-tam", name: "NHẸ TÂM", tag: "SẢN PHẨM", description: "NHẸ TÂM . FIX RUNG . BÁM ĐẦU . FIX LỐ ĐẦU", price: 100000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "aim-co", name: "AIM CỔ", tag: "SẢN PHẨM", description: "BẮN VÀO CỔ SẼ LÀ MÁU ĐỎ . HEADSHOT 80% ", price: 200000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "aimlock", name: "AIMLOCK", tag: "SẢN PHẨM", description: "KÉO NHẸ LÀ ĐỎ . AUTO BÁM VÙNG ĐẦU 88% . KHÓA TÂM VÙNG ĐẦU", price: 300000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "vip-pack-1", name: "AIM BODY", tag: "SẢN PHẨM", description: "KHÔNG CẦN KÉO TÂM . BẮN VÀO BỤNG SẼ MÁU ĐỎ 100% ", price: 400000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "vip-pack-2", name: "AIMLOCK PLUS ", tag: "SẢN PHẨM", description: "KÉO NHẸ LÀ KHÓA TÂM CHẶT VÙNG ĐẦU , KHÔNG RUNG TÂM , KHÔNG LỐ ĐẦU , ĐI KÈO THOẢI MÁI . KHÔNG LO CHECK MÁY . HEADSHOT RANDOM 90-95%", price: 600000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "ultimate-pack", name: "AIMLOCK PLUS SENSI", tag: "SẢN PHẨM", description: "GÓI CAO CẤP KÉO TÂM . FIX ALL TÌNH TRẠNG KÉO TÂM . CẢI THIỆN KĨ NĂNG HEADSHOT . KHÔNG KÉO LÀ VÀNG . KÉO TÂM LÀ AUTO ĐỎ 100% . BẢN NÀY NÓI CHUNG CHƠI CHẾ ĐỘ GÌ CŨNG NGON . KÈO THOÁI MÁI KHÔNG LO BỊ LỘ", price: 800000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "custom-fps", name: "APP AIMLOCK SUPER5.0", tag: "MỚI", description: "Tối ưu hóa khung hình, giảm giật lag khi chơi game.", price: 50000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "sensitivity-master", name: "APP AIMLOCK SUPER5.0", tag: "HOT", description: "NHẸ TÂM . TỐI ƯU HÓA FPS . GIẢM DROP . LOOK FPS MAX . FIX RUNG . FIX LỐ . BÁM ĐẦU", price: 150000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" },
+      { id: "legend-package", name: "APP AIMLOCK SUPER5.0", tag: "VIP", description: "ĐẶC QUYỀN HỖ TRỢ TRỌN ĐỜI CẬP NHẬT TÍNH NĂNG MỚI LIÊN TỤC . FIX LAG . FIX DELAY . GIẢM RUNG GIẬT TÂM . TRẢI NGHIỆM MƯỢT MÀ . TĂNG FPS BOOTER . GIẢM TIFNG TRẠNG NĂNG TÂM . TỐI ƯU THIẾT BỊ KHI CHƠI GAME . BÁM ĐẦU . DỄ KÉO DỄ CHƠI . DỄ SỬ DỤNG ", price: 500000, image: "https://i.ibb.co/xqbg4X0X/IMG-2565.png" }
+    ]
+  };
+
+  (() => {
+    const config = window.SHOP_CONFIG || {};
+    const products = Array.isArray(config.products) ? config.products : [];
+    let cart = [];
+
+    const $ = (id) => document.getElementById(id);
+    const formatMoney = (amount) => new Intl.NumberFormat("vi-VN").format(amount) + "đ";
+    const digits = (value) => String(value || "").replace(/\D/g, "");
+
+    const zaloUrl = () => {
+      const phone = digits(config.zaloPhone);
+      return phone ? `https://zalo.me/${phone}` : "https://zalo.me/";
+    };
+
+    if ($("headerZalo")) $("headerZalo").href = zaloUrl();
+    if ($("footerZalo")) $("footerZalo").href = zaloUrl();
+    if ($("year")) $("year").textContent = new Date().getFullYear();
+
+    const grid = $("productGrid");
+    if (grid) {
+      grid.innerHTML = "";
+      products.forEach((product) => {
+        const card = document.createElement("article");
+        card.className = "product";
+
+        let imgHtml = `<div class="product-img-wrap"><img src="${product.image || 'https://i.ibb.co/xqbg4X0X/IMG-2565.png'}" alt="${product.name}"></div>`;
+
+        card.innerHTML = `
+          ${imgHtml}
+          <span class="product-tag">${product.tag || "SẢN PHẨM"}</span>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <div class="product-bottom">
+            <strong class="price">${formatMoney(Number(product.price) || 0)}</strong>
+          </div>
+          <div class="product-actions">
+            <button class="add-cart-button" data-id="${product.id}">Thêm giỏ</button>
+            <button class="buy-button" data-id="${product.id}">Mua ngay</button>
+          </div>
+        `;
+
+        card.querySelector(".buy-button").addEventListener("click", () => openCheckout(product));
+        card.querySelector(".add-cart-button").addEventListener("click", () => addToCart(product));
+
+        grid.append(card);
+      });
+    }
+
+    function showToast(text) {
+      const toast = $("toast");
+      const toastText = $("toastText");
+      if (!toast || !toastText) return;
+      toastText.textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => { toast.classList.remove("show"); }, 2800);
+    }
+
+    window.addToCart = function(product) {
+      const existing = cart.find(item => item.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      updateCartUI();
+      showToast(`Đã thêm "${product.name}" vào giỏ hàng!`);
+    };
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if ($("cartCount")) $("cartCount").textContent = totalCount;
+
+      const list = $("cartItemsList");
+      if (!list) return;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<p style="color:var(--muted); font-size:12px; text-align:center;">Giỏ hàng đang trống.</p>`;
+        if ($("cartTotalPrice")) $("cartTotalPrice").textContent = "0đ";
+        return;
+      }
+
+      let html = "";
+      let totalPrice = 0;
+      cart.forEach(item => {
+        totalPrice += item.price * item.quantity;
+        html += `
+          <div class="cart-item-row">
+            <span>${item.name} (x${item.quantity})</span>
+            <strong>${formatMoney(item.price * item.quantity)}</strong>
+          </div>
+        `;
+      });
+      list.innerHTML = html;
+      if ($("cartTotalPrice")) $("cartTotalPrice").textContent = formatMoney(totalPrice);
+    }
+
+    function createOrderCode() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let suffix = "";
+      for (let i = 0; i < 6; i++) suffix += chars[Math.floor(Math.random() * chars.length)];
+      return `TD${suffix}`;
+    }
+
+    window.openCheckoutDialog = function(productName, price) {
+      openCheckout({ name: productName, price: price });
+    };
+
+    function openCheckout(productOrTotal, isCart = false, cartTotalAmount = 0) {
+      const code = createOrderCode();
+      let title = "";
+      let priceNum = 0;
+
+      if (isCart) {
+        title = `Combo ${cart.length} sản phẩm trong giỏ`;
+        priceNum = cartTotalAmount;
+      } else {
+        title = productOrTotal.name;
+        priceNum = Number(productOrTotal.price) || 0;
+      }
+
+      if ($("checkoutTitle")) $("checkoutTitle").textContent = title;
+      if ($("checkoutPrice")) $("checkoutPrice").textContent = formatMoney(priceNum);
+      if ($("orderCode")) $("orderCode").textContent = code;
+
+      if ($("zaloOrder")) {
+        const zaloMsg = `Chào shop, mình cần hỗ trợ đơn ${code}: ${title} (${formatMoney(priceNum)}). Mình sẽ gửi bill để shop kiểm tra.`;
+        $("zaloOrder").href = `${zaloUrl()}?text=${encodeURIComponent(zaloMsg)}`;
+      }
+
+      const img = $("qrImage");
+      const message = $("qrMessage");
+      if (img) {
+        img.classList.remove("ready");
+        img.removeAttribute("src");
+      }
+      if (message) message.textContent = "Đang tạo mã QR VietQR...";
+
+      const account = String(config.bankAccount || "").trim();
+      const accountName = String(config.accountName || "").trim();
+
+      if (!account || !accountName) {
+        if (message) message.textContent = "Chưa cấu hình tài khoản ngân hàng trong config!";
+      } else {
+        const params = new URLSearchParams({
+          amount: String(priceNum),
+          addInfo: code,
+          accountName: accountName
+        });
+
+        if (img) {
+          img.onload = () => img.classList.add("ready");
+          img.onerror = () => { if (message) message.textContent = "Không tải được QR."; };
+          img.src = `https://img.vietqr.io/image/${encodeURIComponent(config.bankCode || "MB")}-${encodeURIComponent(account)}-qr_only.png?${params.toString()}`;
+        }
+        if (message) {
+          message.textContent = `Người nhận: ${accountName} | STK: ${account} (${config.bankCode || "MB"}) | Nội dung: ${code}`;
+        }
+      }
+
+      if ($("cartDialog")) $("cartDialog").close();
+      if ($("checkoutDialog") && typeof $("checkoutDialog").showModal === "function") {
+        $("checkoutDialog").showModal();
+      }
+    }
+
+    if ($("openCartBtn")) {
+      $("openCartBtn").addEventListener("click", () => {
+        if ($("cartDialog") && typeof $("cartDialog").showModal === "function") {
+          $("cartDialog").showModal();
+        }
+      });
+    }
+    if ($("closeCartDialog")) {
+      $("closeCartDialog").addEventListener("click", () => $("cartDialog").close());
+    }
+    if ($("checkoutCartBtn")) {
+      $("checkoutCartBtn").addEventListener("click", () => {
+        if (cart.length === 0) {
+          showToast("Giỏ hàng của bạn đang trống!");
+          return;
+        }
+        const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        openCheckout(null, true, totalAmount);
+      });
+    }
+
+    if ($("closeDialog")) {
+      $("closeDialog").addEventListener("click", () => $("checkoutDialog").close());
+    }
+    if ($("checkoutDialog")) {
+      $("checkoutDialog").addEventListener("click", (event) => {
+        if (event.target === $("checkoutDialog")) $("checkoutDialog").close();
+      });
+    }
+    if ($("cartDialog")) {
+      $("cartDialog").addEventListener("click", (event) => {
+        if (event.target === $("cartDialog")) $("cartDialog").close();
+      });
+    }
+
+    if ($("copyCode")) {
+      $("copyCode").addEventListener("click", async () => {
+        const text = $("orderCode") ? $("orderCode").textContent : "";
+        try {
+          await navigator.clipboard.writeText(text);
+          $("copyCode").textContent = "Đã chép";
+          setTimeout(() => { $("copyCode").textContent = "Sao chép"; }, 1400);
+        } catch {
+          window.prompt("Sao chép nội dung:", text);
+        }
+      });
+    }
+  })();
+
+  // Chuyển đổi danh mục
+  window.switchCategory = function(catNum) {
+    const grid1 = document.getElementById('productGrid');
+    const grid2 = document.getElementById('productGridCat2');
+    const tab1 = document.getElementById('tabCat1');
+    const tab2 = document.getElementById('tabCat2');
+    const catTitle = document.getElementById('catTitle');
+
+    if (catNum === 1) {
+      if(grid1) grid1.style.display = 'grid';
+      if(grid2) grid2.style.display = 'none';
+      if(tab1) tab1.classList.add('active');
+      if(tab2) tab2.classList.remove('active');
+      if(catTitle) catTitle.textContent = 'Danh sách sản phẩm (12 Gói Hot)';
+    } else {
+      if(grid1) grid1.style.display = 'none';
+      if(grid2) grid2.style.display = 'grid';
+      if(tab1) tab1.classList.remove('active');
+      if(tab2) tab2.classList.add('active');
+      if(catTitle) catTitle.textContent = 'Danh mục Sản Phẩm 2';
+    }
+  };
+
+  // Popup chào mừng
+  (function() {
+    const welcomeModal = document.getElementById('welcomeModal');
+    const closeWelcomeBtn = document.getElementById('closeWelcomeBtn');
+
+    if (!welcomeModal || !closeWelcomeBtn) return;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        welcomeModal.classList.add('show');
+      }, 500);
+    });
+
+    closeWelcomeBtn.addEventListener('click', () => {
+      welcomeModal.classList.remove('show');
+    });
+
+    welcomeModal.addEventListener('click', (e) => {
+      if (e.target === welcomeModal) {
+        welcomeModal.classList.remove('show');
+      }
+    });
+  })();
+
+  // Trung tâm hỗ trợ
+  (function() {
+    const toggleBtn = document.getElementById('toggleSupportBtn');
+    const supportBox = document.getElementById('supportBox');
+    const closeBtn = document.getElementById('closeSupportBox');
+
+    if (!toggleBtn || !supportBox) return;
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      supportBox.classList.toggle('show');
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        supportBox.classList.remove('show');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!supportBox.contains(e.target) && !toggleBtn.contains(e.target)) {
+        supportBox.classList.remove('show');
+      }
+    });
+  })();
+
+  // Nhạc nền
+  (function() {
+    const musicBtn = document.getElementById('toggleMusicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+
+    if (!musicBtn || !bgMusic) return;
+
+    bgMusic.volume = 0.4;
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicBtn.classList.remove('playing');
+        musicIcon.className = 'fa-solid fa-music';
+        if (typeof showToast === 'function') showToast('Đã tắt nhạc nền');
+      } else {
+        bgMusic.play().then(() => {
+          musicBtn.classList.add('playing');
+          musicIcon.className = 'fa-solid fa-compact-disc fa-spin';
+          if (typeof showToast === 'function') showToast('Đang phát nhạc nền');
+        }).catch(() => {});
+      }
+      isPlaying = !isPlaying;
+    });
+  })();
+
+  // Live Trust Toast tự động
+  const trustCustomers = [
+    { name: "Nguyễn Văn Hùng", pkg: "Gói DPI Pro", loc: "Hà Nội" },
+    { name: "Trần Minh Quân", pkg: "AimLock Plus Sensi", loc: "TP. Hồ Chí Minh" },
+    { name: "Lê Hoàng Long", pkg: "Gói Tối Ưu Android VIP", loc: "Đà Nẵng" },
+    { name: "Phạm Tuấn Kiệt", pkg: "Combo DPI Ultra Speed", loc: "Hải Phòng" }
+  ];
+
+  function showLiveTrustNotification() {
+    const toast = document.getElementById("liveTrustToast");
+    const nameEl = document.getElementById("toastCustomerName");
+    const timeEl = document.getElementById("toastTimeAgo");
+    if (!toast || !nameEl || !timeEl) return;
+
+    const randomCust = trustCustomers[Math.floor(Math.random() * trustCustomers.length)];
+    const randomMins = Math.floor(1 + Math.random() * 15);
+
+    nameEl.textContent = `Vừa mua: ${randomCust.pkg}`;
+    timeEl.textContent = `Khách hàng tại ${randomCust.loc} • ${randomMins} phút trước`;
+
+    toast.classList.add("show");
+    setTimeout(() => { toast.classList.remove("show"); }, 4000);
+  }
+  setInterval(showLiveTrustNotification, 12000);
+  window.renderProducts = function() {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      grid.innerHTML = window.SHOP_CONFIG.products.map(p => `
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="${p.image}" alt="${p.name}">
+            <span class="product-badge" style="position:absolute; top:6px; left:6px; background:var(--cyber-red); color:#fff; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:900;">${p.tag}</span>
+          </div>
+          <div>
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+          </div>
+          <div>
+            <span class="price-current">${window.formatMoney(p.price)}</span>
+            <div class="card-actions">
+              <button class="btn-buy-now pulse-attention" onclick="openCheckoutDialog('${p.name.replace(/'/g, "\\'")}', ${p.price})">MUA NGAY</button>
+              <button class="btn-add-cart" onclick="addToCart({id: '${p.id}', name: '${p.name.replace(/'/g, "\\'")}', price: ${p.price}})">+ GIỎ HÀNG</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    };
+</script>
